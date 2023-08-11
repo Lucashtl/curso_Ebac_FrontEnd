@@ -1,0 +1,52 @@
+.container{
+    width: 1280px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+h1{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+form input{
+    background-color: rgba(rgb(167, 66, 66), rgb(105, 210, 105), rgb(61, 61, 159), alpha);
+    display: block;
+    padding: 10px;
+    margin-bottom: 8px;
+    width: 460px;
+    height: 40px;
+    
+}
+
+
+button{
+    padding: 25px;
+    width: 484px;
+    background-color: black;
+    color: blue;
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: antiquewhite;
+    color: black;
+}
+
+.erro{
+    display:none;
+    padding: 5px;
+    margin-bottom: 5px;
+    background-color: red;
+    color: black;
+}
+
+.sucesso{
+    color: rgb(71, 59, 158);
+    background-color:rgb(68, 255, 68);
+    padding: 6px;
+    font-size: 18px;
+    font-family: 'Bungee', cursive;
+    font-weight: normal;
+    display: none;
+}
+
