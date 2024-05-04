@@ -1,0 +1,3 @@
+const dividir = require('./sum');
+
+console.log('dividir:', dividir(10, 2));
