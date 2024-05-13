@@ -1,0 +1,102 @@
+module.exports = function (grunt) {
+    grunt.initConfig({
+        pkg: grunt.file.readJSON('package.json'),
+
+        less: {
+            development: {
+                files: {
+                    'dev/styles/main.css': 'src/styles/main.less'
+                }
+            },
+            dist: {
+                options: {
+                    compress: true
+                },
+                files: {
+                    'dist/styles/main.min.css': 'src/styles/main.less'
+                }
+            }
+        },
+
+        replace: {
+            dev:{
+                options:{
+                    patterns:[
+                        {
+                            match: 'ENDERECO_CSS',
+                            replacement: './styles/main.css'
+                        },
+                        {
+                            match: 'ENDERECO_JS',
+                            replacement: './scripts/main.js'
+                        }
+                    ]
+                },
+                files:[
+                    {
+                        expand:true,
+                        flatten:true,
+                        src:['src/index.html'],
+                        dest: 'dev/'
+                    }
+                ]
+            },
+            
+            dist:{
+                options:{
+                    patterns:[
+                        {
+                            match: 'ENDERECO_CSS',
+                            replacement: './styles/main.min.css'
+                    },
+                    {
+                        match: 'ENDERECO_JS',
+                        replacement: './scripts/main.min.js'
+                    }
+                ]
+                },
+
+                files:[{
+                    expand:true,
+                    flatten:true,
+                    src:['prebuild/index.html'],
+                    dest: 'dist/'
+                }]
+            }
+        },
+
+        uglify: {
+
+            target: {
+                files: {
+                    'dist/scripts/main.min.js': 'src/scripts/main.js'
+                }
+            }
+        },
+
+        htmlmin:{
+            dist:{
+                options:{
+                    removeComments:true,
+                    collapseWhitespace:true
+                },
+                files:{
+                    'prebuild/index.html': 'src/index.html'
+                }
+            }
+        }
+
+
+
+    })
+
+
+    grunt.loadNpmTasks('grunt-contrib-less'),
+    grunt.loadNpmTasks('grunt-contrib-uglify'),
+    grunt.loadNpmTasks('grunt-contrib-htmlmin'),
+    grunt.loadNpmTasks('grunt-replace')
+
+    grunt.registerTask('build', ['less:dist', 'htmlmin:dist', 'replace:dist', 'uglify'] )
+
+
+}
